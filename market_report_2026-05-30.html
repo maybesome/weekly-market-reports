@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週市場績效分析報告 2026-05-30</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --bg2: #1a1d27;
+    --bg3: #222536;
+    --border: #2e3248;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --green: #22c55e;
+    --red: #ef4444;
+    --accent: #4f7cff;
+    --accent2: #7c3aed;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --gold: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 16px 60px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 0 20px;
+    margin-bottom: 24px;
+  }
+  .header .container { padding-bottom: 0; }
+  .report-title { font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+  .report-meta { color: var(--text2); font-size: 13px; }
+  .report-meta span { margin-right: 16px; }
+  .badge-ai {
+    display: inline-block;
+    background: var(--accent2);
+    color: #fff;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* TOC */
+  .toc {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .toc-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); margin-bottom: 10px; }
+  .toc-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .toc-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    background: var(--bg3);
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .toc-links a:hover { border-color: var(--accent); }
+
+  /* Section */
+  .section { margin-bottom: 36px; }
+  .section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    background: var(--accent);
+    color: #fff;
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+
+  /* Price Strip */
+  .price-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .price-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .price-card .name { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .price-card .val { font-size: 18px; font-weight: 700; }
+  .price-card .chg { font-size: 12px; margin-top: 2px; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead tr { background: var(--bg3); }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    color: var(--text2);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  th.right, td.right { text-align: right; }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tr:hover td { background: var(--bg2); }
+  tr:last-child td { border-bottom: none; }
+
+  .up { color: var(--green); font-weight: 600; }
+  .down { color: var(--red); font-weight: 600; }
+  .neutral { color: var(--text2); }
+
+  /* Source tag */
+  .src-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    font-weight: 600;
+  }
+  .src-stockq { background: #1e3a5f; color: #60a5fa; }
+  .src-moneydj { background: #1e3a2f; color: #34d399; }
+  .src-est { background: #3a2e1e; color: #fb923c; }
+
+  /* Rank card */
+  .rank-medal { font-size: 18px; }
+
+  /* Active badge */
+  .badge-active {
+    display: inline-block;
+    background: #1e3a5f;
+    color: #60a5fa;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    font-weight: 600;
+  }
+
+  /* News */
+  .news-list { display: flex; flex-direction: column; gap: 14px; }
+  .news-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .news-num { font-size: 11px; color: var(--accent); font-weight: 700; margin-bottom: 6px; text-transform: uppercase; }
+  .news-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
+  .news-body { color: var(--text2); font-size: 13px; line-height: 1.7; }
+  .news-impact { margin-top: 8px; font-size: 12px; background: var(--bg3); padding: 6px 10px; border-radius: 6px; }
+  .news-impact strong { color: var(--yellow); }
+
+  /* Summary */
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } }
+  .summary-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .summary-card .label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .summary-card p { font-size: 13px; line-height: 1.7; color: var(--text2); }
+  .summary-card .highlight { color: var(--text); font-weight: 600; }
+
+  /* Sources */
+  .sources-list { list-style: none; }
+  .sources-list li { margin-bottom: 8px; }
+  .sources-list a { color: var(--accent); text-decoration: none; font-size: 13px; }
+  .sources-list a:hover { text-decoration: underline; }
+
+  /* Disclaimer */
+  .disclaimer {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 12px;
+    color: var(--text2);
+    margin-top: 24px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="report-title">📊 週市場績效分析報告</div>
+    <div class="report-meta">
+      <span>報告日期：2026-05-30（週日）</span>
+      <span>數據截至：2026-05-29 收盤</span>
+      <span><span class="badge-ai">AI 自動生成</span></span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">快速導覽</div>
+    <div class="toc-links">
+      <a href="#s1">一、全球市場表現</a>
+      <a href="#s2">二、重點標的多期報酬</a>
+      <a href="#s3">三、ETF 週績效十強</a>
+      <a href="#s4">四、市場總結觀察</a>
+      <a href="#s5">五、本週五大新聞</a>
+      <a href="#s6">六、數據來源</a>
+    </div>
+  </div>
+
+  <!-- Section 1: Global Markets -->
+  <div class="section" id="s1">
+    <div class="section-title"><span class="num">1</span> 全球主要市場表現</div>
+
+    <!-- Price Strip -->
+    <div class="price-strip">
+      <div class="price-card">
+        <div class="name">S&amp;P 500</div>
+        <div class="val">7,563.63</div>
+        <div class="chg up">▲ YTD +9.2%</div>
+      </div>
+      <div class="price-card">
+        <div class="name">NASDAQ</div>
+        <div class="val">26,656</div>
+        <div class="chg up">▲ YTD +13.6%</div>
+      </div>
+      <div class="price-card">
+        <div class="name">Dow Jones</div>
+        <div class="val">50,462</div>
+        <div class="chg up">▲ YTD +5.9%</div>
+      </div>
+      <div class="price-card">
+        <div class="name">台灣加權（TAIEX）</div>
+        <div class="val">44,733</div>
+        <div class="chg up">▲ 歷史新高</div>
+      </div>
+      <div class="price-card">
+        <div class="name">比特幣（BTC）</div>
+        <div class="val">$73,382</div>
+        <div class="chg down">▼ YTD −12.4%</div>
+      </div>
+      <div class="price-card">
+        <div class="name">以太坊（ETH）</div>
+        <div class="val">$2,004</div>
+        <div class="chg down">▼ 偏弱整理</div>
+      </div>
+      <div class="price-card">
+        <div class="name">黃金（Gold）</div>
+        <div class="val">$4,539</div>
+        <div class="chg up">▲ YTD +5.3%</div>
+      </div>
+      <div class="price-card">
+        <div class="name">WTI 原油</div>
+        <div class="val">$89.27</div>
+        <div class="chg down">▼ 月跌 −7.5%</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>市場 / 指數</th>
+            <th class="right">近一週</th>
+            <th class="right">近一個月</th>
+            <th class="right">近三個月</th>
+            <th class="right">年初至今 YTD</th>
+            <th class="right">最新收盤價</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>S&amp;P 500</strong></td>
+            <td class="right"><span class="up">▲ +1.5%*</span></td>
+            <td class="right"><span class="up">▲ +5.0%</span></td>
+            <td class="right"><span class="up">▲ +9.6%</span></td>
+            <td class="right"><span class="up">▲ +9.2%</span></td>
+            <td class="right">7,563.63</td>
+          </tr>
+          <tr>
+            <td><strong>NASDAQ Composite</strong></td>
+            <td class="right"><span class="up">▲ +2.5%*</span></td>
+            <td class="right"><span class="up">▲ +8.0%</span></td>
+            <td class="right"><span class="up">▲ +13.5%</span></td>
+            <td class="right"><span class="up">▲ +13.6%</span></td>
+            <td class="right">26,656</td>
+          </tr>
+          <tr>
+            <td><strong>Dow Jones（DJIA）</strong></td>
+            <td class="right"><span class="up">▲ +0.5%*</span></td>
+            <td class="right"><span class="up">▲ +2.0%</span></td>
+            <td class="right"><span class="up">▲ +4.0%</span></td>
+            <td class="right"><span class="up">▲ +5.9%</span></td>
+            <td class="right">50,462</td>
+          </tr>
+          <tr>
+            <td><strong>台灣加權指數（TAIEX）</strong></td>
+            <td class="right"><span class="up">▲ +2.5%*</span></td>
+            <td class="right"><span class="up">▲ +5.9%</span></td>
+            <td class="right"><span class="up">▲ +28%*</span></td>
+            <td class="right"><span class="up">▲ +55%*</span></td>
+            <td class="right">44,733</td>
+          </tr>
+          <tr>
+            <td><strong>比特幣（BTC）</strong></td>
+            <td class="right"><span class="down">▼ −1.1%</span></td>
+            <td class="right"><span class="down">▼ −5%*</span></td>
+            <td class="right"><span class="down">▼ −10%*</span></td>
+            <td class="right"><span class="down">▼ −12.4%</span></td>
+            <td class="right">$73,382</td>
+          </tr>
+          <tr>
+            <td><strong>以太坊（ETH）</strong></td>
+            <td class="right"><span class="down">▼ −0.7%</span></td>
+            <td class="right"><span class="down">▼ −5%*</span></td>
+            <td class="right"><span class="down">▼ −15%*</span></td>
+            <td class="right"><span class="neutral">數據待確認</span></td>
+            <td class="right">$2,004</td>
+          </tr>
+          <tr>
+            <td><strong>黃金（Gold）</strong></td>
+            <td class="right"><span class="up">▲ +0.5%*</span></td>
+            <td class="right"><span class="down">▼ −1.8%</span></td>
+            <td class="right"><span class="down">▼ −5%*</span></td>
+            <td class="right"><span class="up">▲ +5.3%</span></td>
+            <td class="right">$4,539/oz</td>
+          </tr>
+          <tr>
+            <td><strong>WTI 原油</strong></td>
+            <td class="right"><span class="down">▼ −3%*</span></td>
+            <td class="right"><span class="down">▼ −7.5%</span></td>
+            <td class="right"><span class="up">▲ +10%*</span></td>
+            <td class="right"><span class="up">▲ +20%*</span></td>
+            <td class="right">$89.27/bbl</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--text2);margin-top:8px;">* 標記為估算值，精確數字以官方數據為準。</p>
+  </div>
+
+  <!-- Section 2: Key Holdings -->
+  <div class="section" id="s2">
+    <div class="section-title"><span class="num">2</span> 重點投資標的表現（多期間報酬率）</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>代號</th>
+            <th>ETF / 基金名稱</th>
+            <th class="right">近一週</th>
+            <th class="right">本月以來</th>
+            <th class="right">近一個月</th>
+            <th class="right">近六個月</th>
+            <th class="right">今年以來 YTD</th>
+            <th>來源</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>0050</strong></td>
+            <td>元大台灣50</td>
+            <td class="right"><span class="up">▲ +8.32%</span></td>
+            <td class="right"><span class="up">▲ +16.46%</span></td>
+            <td class="right"><span class="up">▲ +16.21%</span></td>
+            <td class="right"><span class="up">▲ +69.05%</span></td>
+            <td class="right"><span class="up">▲ +60.67%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>0056</strong></td>
+            <td>元大高股息</td>
+            <td class="right"><span class="up">▲ +8.31%</span></td>
+            <td class="right"><span class="up">▲ +22.74%</span></td>
+            <td class="right"><span class="up">▲ +22.65%</span></td>
+            <td class="right"><span class="up">▲ +39.37%</span></td>
+            <td class="right"><span class="up">▲ +36.67%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>00713</strong></td>
+            <td>元大台灣高息低波</td>
+            <td class="right"><span class="up">▲ +1.53%</span></td>
+            <td class="right"><span class="up">▲ +7.00%</span></td>
+            <td class="right"><span class="up">▲ +6.70%</span></td>
+            <td class="right"><span class="up">▲ +12.31%</span></td>
+            <td class="right"><span class="up">▲ +11.87%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>00757</strong></td>
+            <td>統一FANG+</td>
+            <td class="right"><span class="up">▲ +3.48%</span></td>
+            <td class="right"><span class="up">▲ +10.68%</span></td>
+            <td class="right"><span class="up">▲ +10.50%</span></td>
+            <td class="right"><span class="up">▲ +8.39%</span></td>
+            <td class="right"><span class="up">▲ +13.16%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>00919</strong></td>
+            <td>群益台灣精選高息</td>
+            <td class="right"><span class="up">▲ +8.53%</span></td>
+            <td class="right"><span class="up">▲ +22.66%</span></td>
+            <td class="right"><span class="up">▲ +22.66%</span></td>
+            <td class="right"><span class="up">▲ +35.12%</span></td>
+            <td class="right"><span class="up">▲ +29.51%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>00981A</strong></td>
+            <td>主動統一台股增長 <span class="badge-active">主動式</span></td>
+            <td class="right"><span class="up">▲ +5.31%</span></td>
+            <td class="right"><span class="up">▲ +11.53%</span></td>
+            <td class="right"><span class="up">▲ +13.70%</span></td>
+            <td class="right"><span class="up">▲ +94.33%</span></td>
+            <td class="right"><span class="up">▲ +86.52%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td><strong>00988A</strong></td>
+            <td>主動統一全球創新 <span class="badge-active">主動式</span></td>
+            <td class="right"><span class="up">▲ +8.60%</span></td>
+            <td class="right"><span class="up">▲ +29.75%</span></td>
+            <td class="right"><span class="up">▲ +33.84%</span></td>
+            <td class="right"><span class="up">▲ +122.21%</span></td>
+            <td class="right"><span class="up">▲ +119.35%</span></td>
+            <td><span class="src-tag src-stockq">StockQ</span></td>
+          </tr>
+          <tr>
+            <td colspan="2"><strong>安聯台灣大壩基金-A累積型(台幣)</strong><br><small style="color:var(--text2)">NAV: 339.19（05/29）</small></td>
+            <td class="right"><span class="src-tag src-est">估算</span><br><span class="up">▲ ~6%*</span></td>
+            <td class="right"><span class="up">▲ +11.1%*</span></td>
+            <td class="right"><span class="up">▲ +13.50%</span></td>
+            <td class="right"><span class="up">▲ +120.65%</span></td>
+            <td class="right"><span class="up">▲ +106.32%</span></td>
+            <td><span class="src-tag src-moneydj">MoneyDJ</span></td>
+          </tr>
+          <tr>
+            <td colspan="2"><strong>安聯台灣科技基金</strong><br><small style="color:var(--text2)">NAV: 804.97（05/29）</small></td>
+            <td class="right"><span class="src-tag src-est">估算</span><br><span class="up">▲ ~8%*</span></td>
+            <td class="right"><span class="up">▲ +17.6%*</span></td>
+            <td class="right"><span class="up">▲ +17.87%</span></td>
+            <td class="right"><span class="up">▲ +129.26%</span></td>
+            <td class="right"><span class="up">▲ +107.72%</span></td>
+            <td><span class="src-tag src-moneydj">MoneyDJ</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--text2);margin-top:8px;">* 安聯基金週報酬率與本月以來為估算值（MoneyDJ 不直接提供週數據），其餘數據來自 MoneyDJ 官方績效表。</p>
+  </div>
+
+  <!-- Section 3: Top 10 ETFs -->
+  <div class="section" id="s3">
+    <div class="section-title"><span class="num">3</span> 本週 ETF 績效十強</div>
+    <p style="color:var(--text2);font-size:12px;margin-bottom:14px;">依「近一週」報酬率排序，排除正2、反1、槓桿期貨型ETF。數據來源：StockQ.org（截至 2026-05-30）</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>代號</th>
+            <th>ETF 名稱</th>
+            <th class="right">近一週</th>
+            <th class="right">本月以來</th>
+            <th class="right">近一個月</th>
+            <th class="right">今年以來 YTD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-medal">🥇</span></td>
+            <td><strong>00913</strong></td>
+            <td>兆豐台灣晶圓製造</td>
+            <td class="right"><span class="up">▲ +13.27%</span></td>
+            <td class="right"><span class="up">▲ +32.37%</span></td>
+            <td class="right"><span class="up">▲ +33.37%</span></td>
+            <td class="right"><span class="up">▲ +105.38%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-medal">🥈</span></td>
+            <td><strong>00910</strong></td>
+            <td>第一金太空衛星</td>
+            <td class="right"><span class="up">▲ +12.61%</span></td>
+            <td class="right"><span class="up">▲ +36.67%</span></td>
+            <td class="right"><span class="up">▲ +36.04%</span></td>
+            <td class="right"><span class="up">▲ +100.20%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-medal">🥉</span></td>
+            <td><strong>00927</strong></td>
+            <td>群益半導體收益</td>
+            <td class="right"><span class="up">▲ +12.32%</span></td>
+            <td class="right"><span class="up">▲ +37.55%</span></td>
+            <td class="right"><span class="up">▲ +39.13%</span></td>
+            <td class="right"><span class="up">▲ +87.87%</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><strong>00929</strong></td>
+            <td>復華台灣科技優息</td>
+            <td class="right"><span class="up">▲ +11.71%</span></td>
+            <td class="right"><span class="up">▲ +36.02%</span></td>
+            <td class="right"><span class="up">▲ +36.88%</span></td>
+            <td class="right"><span class="up">▲ +67.40%</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><strong>00888</strong></td>
+            <td>永豐台灣ESG</td>
+            <td class="right"><span class="up">▲ +10.61%</span></td>
+            <td class="right"><span class="up">▲ +30.70%</span></td>
+            <td class="right"><span class="up">▲ +31.24%</span></td>
+            <td class="right"><span class="up">▲ +71.55%</span></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td><strong>009802</strong></td>
+            <td>富邦旗艦50</td>
+            <td class="right"><span class="up">▲ +10.53%</span></td>
+            <td class="right"><span class="up">▲ +27.82%</span></td>
+            <td class="right"><span class="up">▲ +28.72%</span></td>
+            <td class="right"><span class="up">▲ +79.93%</span></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><strong>00946</strong></td>
+            <td>群益科技高息成長</td>
+            <td class="right"><span class="up">▲ +10.37%</span></td>
+            <td class="right"><span class="up">▲ +27.79%</span></td>
+            <td class="right"><span class="up">▲ +29.00%</span></td>
+            <td class="right"><span class="up">▲ +55.21%</span></td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td><strong>00930</strong></td>
+            <td>永豐ESG低碳高息</td>
+            <td class="right"><span class="up">▲ +10.00%</span></td>
+            <td class="right"><span class="up">▲ +27.32%</span></td>
+            <td class="right"><span class="up">▲ +27.59%</span></td>
+            <td class="right"><span class="up">▲ +42.24%</span></td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td><strong>00901</strong></td>
+            <td>永豐智能車供應鏈</td>
+            <td class="right"><span class="up">▲ +9.32%</span></td>
+            <td class="right"><span class="up">▲ +24.26%</span></td>
+            <td class="right"><span class="up">▲ +24.83%</span></td>
+            <td class="right"><span class="up">▲ +86.64%</span></td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td><strong>00878</strong></td>
+            <td>國泰永續高股息</td>
+            <td class="right"><span class="up">▲ +8.81%</span></td>
+            <td class="right"><span class="up">▲ +21.15%</span></td>
+            <td class="right"><span class="up">▲ +21.58%</span></td>
+            <td class="right"><span class="up">▲ +41.69%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 4: Market Summary -->
+  <div class="section" id="s4">
+    <div class="section-title"><span class="num">4</span> 市場總結與觀察</div>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="label">🌍 本週市場氛圍</div>
+        <p>整體市場呈現<span class="highlight">風險偏好上升</span>格局。台股創歷史新高，台灣市值超越印度躍升全球第五。美股科技股領漲，S&amp;P 500 與 NASDAQ 雙創收盤新高，主要受到 AI 熱潮與美伊停火談判樂觀預期驅動。</p>
+      </div>
+      <div class="summary-card">
+        <div class="label">🇺🇸 美股觀察</div>
+        <p>S&amp;P 500 收盤 7,563（5/28），NASDAQ 突破 26,600 關卡。<span class="highlight">Micron 年漲幅逾 200%</span>，AI 半導體概念持續發酵。Fed 主席交接後，市場聚焦 PCE 通膨數據，10 年期公債殖利率降至 4.485%，債市略有喘息空間。</p>
+      </div>
+      <div class="summary-card">
+        <div class="label">🇹🇼 台股觀察</div>
+        <p>加權指數突破 44,700 點，本週漲幅約 +2.5%，<span class="highlight">本月累計漲幅逾 +5.9%</span>。TSMC 今年累計漲幅約 46%，帶動台灣市場市值超越印度，台股成為全球第五大股市。半導體、AI、科技優息型 ETF 表現強勁。</p>
+      </div>
+      <div class="summary-card">
+        <div class="label">₿ 加密貨幣</div>
+        <p>BTC 在 $73,000–$75,000 整理，<span class="highlight">年初至今下跌約 12.4%</span>，受到高通膨預期與機構 ETF 淨流出壓力影響。ETH 跌破 $2,010，多空轉換區間需要持續觀察。加密市場與傳統股市呈現分歧走勢。</p>
+      </div>
+      <div class="summary-card">
+        <div class="label">🏅 大宗商品</div>
+        <p>黃金雖於一月觸及歷史新高 $5,602，目前回落至 $4,539，<span class="highlight">年初至今仍維持 +5.3% 正報酬</span>。原油受到美伊停火談判樂觀情緒影響，WTI 跌至 $89/桶附近，月跌幅達 −7.5%。OPEC+ 供給策略仍是關鍵變數。</p>
+      </div>
+      <div class="summary-card">
+        <div class="label">🔭 下週關注重點</div>
+        <p>① <span class="highlight">PCE 通膨數據</span>（市場預期年增 3.8%）② <span class="highlight">Fed 官員講話</span>（Kevin Warsh 政策立場） ③ <span class="highlight">美伊談判進展</span>（影響原油與黃金走向） ④ <span class="highlight">台股量能維持</span>（歷史高量後是否延續） ⑤ 美國就業數據是否支撐消費信心。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: News -->
+  <div class="section" id="s5">
+    <div class="section-title"><span class="num">5</span> 本週最重要五項投資新聞</div>
+    <div class="news-list">
+
+      <div class="news-card">
+        <div class="news-num">📰 新聞一</div>
+        <div class="news-title">台股市值超越印度，躍升全球第五大股市</div>
+        <div class="news-body">
+          台灣加權指數本月突破 44,700 點歷史新高，台灣股市市值已超越印度，成為全球第五大股市（僅次於美國、中國大陸、日本、香港）。TSMC 今年漲幅約 46%，佔台灣加權指數市值比重約 42%，AI 伺服器需求持續推動台灣科技股估值重評。
+        </div>
+        <div class="news-impact"><strong>市場影響：</strong>台灣相關 ETF（0050、00692、半導體主題 ETF）受惠，外資持續流入；台幣計價資產對全球投資人吸引力提升。</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-num">📰 新聞二</div>
+        <div class="news-title">Fed 新主席 Kevin Warsh 就任，貨幣政策走向存在不確定性</div>
+        <div class="news-body">
+          Kevin Warsh 於 5 月 22 日宣誓就任美聯準會主席，接替前主席任期。FOMC 內部對政策路徑意見分歧，部分委員偏向年底前降息，另一派則因中東油價衝擊引發的通膨黏性主張維持高利率甚至考慮緊縮。這是美聯準會四十年來首次面臨如此明顯的雙重使命衝突（就業 vs. 通膨）。
+        </div>
+        <div class="news-impact"><strong>市場影響：</strong>長債殖利率維持 4.48-4.50% 高位，美元指數窄幅整理，對科技股估值形成壓力，但市場目前整體仍風險偏好。</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-num">📰 新聞三</div>
+        <div class="news-title">美伊停火談判進展樂觀，油價回落至 $89 附近</div>
+        <div class="news-body">
+          美國與伊朗之間的停火談判於本週取得初步進展，市場對中東地緣政治緊張局勢緩解抱有樂觀預期。WTI 原油從 $95-100 高點回落至 $89/桶，月跌幅達 −7.5%。美國 10 年期公債殖利率也相應下滑超過 8 個基點。
+        </div>
+        <div class="news-impact"><strong>市場影響：</strong>原油相關 ETF（如 00642U 期元大S&amp;P石油）承壓。航空股、運輸類受惠；通膨預期略降，有利債市。</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-num">📰 新聞四</div>
+        <div class="news-title">AI 晶片超級週期：Micron 年漲逾 200%，台灣半導體持續領跑</div>
+        <div class="news-body">
+          美股半導體巨頭 Micron Technology 今年股價累計上漲逾 200%（過去 12 個月漲幅達 800%），帶動全球 AI 晶片概念股持續強勢。台灣半導體 ETF（如 00913、00927、00911、00830）本週漲幅均超過 12%，AI 驅動的伺服器 DRAM 及 HBM 需求被機構視為多年超級週期。
+        </div>
+        <div class="news-impact"><strong>市場影響：</strong>台灣晶圓製造、半導體 ETF 今年以來報酬率普遍超過 100%，短期過熱風險需留意。</div>
+      </div>
+
+      <div class="news-card">
+        <div class="news-num">📰 新聞五</div>
+        <div class="news-title">通膨黏性依然，PCE 年增 3.8%，消費者信心連續走弱</div>
+        <div class="news-body">
+          美國 4 月 CPI 年增 3.8%，遠高於 Fed 目標 2%。Conference Board 消費者信心指數在五月續降至 93.1，為多月低位，主要受中東衝突推升能源與糧食價格拖累。本週市場將密切關注 Fed 偏好的核心 PCE 數據（預期年增 3.8%），以評估年底前的降息空間。
+        </div>
+        <div class="news-impact"><strong>市場影響：</strong>高通膨壓抑債市，黃金於高點整理；消費類股承壓，科技類與 AI 主題相對抗通膨性較強。</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Section 6: Sources -->
+  <div class="section" id="s6">
+    <div class="section-title"><span class="num">6</span> 數據來源</div>
+    <ul class="sources-list">
+      <li>🔗 <a href="https://www.stockq.org/etf/etf_comparison.php" target="_blank">StockQ.org — 台灣ETF績效比較</a></li>
+      <li>🔗 <a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD01" target="_blank">MoneyDJ — 安聯台灣大壩基金績效表</a></li>
+      <li>🔗 <a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD04" target="_blank">MoneyDJ — 安聯台灣科技基金績效表</a></li>
+      <li>🔗 <a href="https://www.cnbc.com/2026/05/25/stock-futures-today-live-updates.html" target="_blank">CNBC — S&amp;P 500 新高，Micron 科技股領漲（5/25）</a></li>
+      <li>🔗 <a href="https://www.fool.com/coverage/stock-market-today/2026/05/26/stock-market-today-may-26-soaring-tech-stocks-push-s-and-p-500-and-nasdaq-to-new-highs/" target="_blank">Motley Fool — 科技股推升 S&amp;P 500 與 NASDAQ 新高（5/26）</a></li>
+      <li>🔗 <a href="https://www.bloomberg.com/news/articles/2026-05-26/tsmc-s-relentless-rise-powers-taiwan-s-market-value-above-india" target="_blank">Bloomberg — 台灣超越印度成全球第五大股市（5/26）</a></li>
+      <li>🔗 <a href="https://www.taiwannews.com.tw/news/6371481" target="_blank">Taiwan News — AI 動能推動台股創歷史新高（5/28）</a></li>
+      <li>🔗 <a href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-may-29-2026-prices-open-lower-despite-news-of-us-iran-truce-115046286.html" target="_blank">Yahoo Finance — 比特幣以太坊價格（5/29）</a></li>
+      <li>🔗 <a href="https://www.gold.org/goldhub/data/gold-returns" target="_blank">World Gold Council — 黃金 2026 年度報酬</a></li>
+      <li>🔗 <a href="https://tradingeconomics.com/united-states/stock-market" target="_blank">Trading Economics — 美國股市指數歷史數據</a></li>
+      <li>🔗 <a href="https://statementdog.com/taiex" target="_blank">財報狗 — 台灣加權指數</a></li>
+      <li>🔗 <a href="https://www.slickcharts.com/sp500/returns/ytd" target="_blank">Slickcharts — S&amp;P 500 YTD 報酬</a></li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ 本報告由 AI 自動生成，所有數據僅供參考，不構成任何投資建議。帶 * 號之數值為估算，實際數字請以官方數據為準。投資有風險，申購前請詳閱相關說明文件。
+  </div>
+
+</div>
+</body>
+</html>
