@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週市場績效分析報告 2026-07-11</title>
+<style>
+  :root{
+    --bg:#0f1117;
+    --card:#161923;
+    --card-border:#232838;
+    --text:#e6e8ef;
+    --text-dim:#9aa1b4;
+    --green:#22c55e;
+    --red:#ef4444;
+    --accent:#4f7cff;
+    --gold:#f5c518;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang TC","Microsoft JhengHei",sans-serif;
+    line-height:1.6;
+    padding:0 16px 60px;
+  }
+  .wrap{max-width:960px;margin:0 auto;}
+  header{padding:32px 0 16px;text-align:center;}
+  header h1{font-size:1.6em;margin:0 0 6px;}
+  header .sub{color:var(--text-dim);font-size:0.92em;}
+  .disclaimer-top{
+    background:#1c2030;border:1px solid var(--card-border);border-radius:10px;
+    padding:10px 16px;font-size:0.82em;color:var(--text-dim);margin:16px 0;text-align:center;
+  }
+  nav.toc{
+    background:var(--card);border:1px solid var(--card-border);border-radius:12px;
+    padding:16px 20px;margin:20px 0;
+  }
+  nav.toc h2{font-size:1em;margin:0 0 10px;color:var(--accent);}
+  nav.toc ol{margin:0;padding-left:20px;columns:2;}
+  nav.toc li{margin-bottom:6px;}
+  nav.toc a{color:var(--text);text-decoration:none;font-size:0.92em;}
+  nav.toc a:hover{color:var(--accent);}
+  section{margin:36px 0;}
+  h2.section-title{
+    font-size:1.25em;border-left:4px solid var(--accent);padding-left:12px;margin-bottom:16px;
+  }
+  h2.section-title .en{color:var(--text-dim);font-size:0.65em;font-weight:400;margin-left:6px;}
+  .price-strip{
+    display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;margin-bottom:18px;
+  }
+  .price-card{
+    flex:0 0 auto;min-width:118px;background:var(--card);border:1px solid var(--card-border);
+    border-radius:10px;padding:10px 14px;text-align:center;
+  }
+  .price-card .name{font-size:0.75em;color:var(--text-dim);margin-bottom:4px;}
+  .price-card .price{font-size:1.05em;font-weight:600;}
+  .price-card .chg{font-size:0.8em;margin-top:2px;}
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden;font-size:0.88em;}
+  thead th{
+    background:#1c2030;color:var(--text-dim);text-align:right;padding:10px 10px;font-weight:600;
+    border-bottom:1px solid var(--card-border);white-space:nowrap;
+  }
+  thead th:first-child,thead th:nth-child(2){text-align:left;}
+  tbody td{padding:10px 10px;text-align:right;border-bottom:1px solid var(--card-border);white-space:nowrap;}
+  tbody td:first-child,tbody td:nth-child(2){text-align:left;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#1a1e2c;}
+  .up{color:var(--green);}
+  .down{color:var(--red);}
+  .flat{color:var(--text-dim);}
+  .tbl-scroll{overflow-x:auto;}
+  .badge{
+    display:inline-block;font-size:0.68em;padding:2px 6px;border-radius:5px;margin-left:6px;
+    background:rgba(79,124,255,0.15);color:var(--accent);border:1px solid rgba(79,124,255,0.35);
+  }
+  .badge.active{background:rgba(245,197,24,0.15);color:var(--gold);border-color:rgba(245,197,24,0.35);}
+  .rank1{color:var(--gold);font-weight:700;}
+  .rank2{color:#c9ccd6;font-weight:700;}
+  .rank3{color:#cd7f32;font-weight:700;}
+  .source-note{font-size:0.78em;color:var(--text-dim);margin-top:8px;}
+  .summary-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .summary-card{
+    background:var(--card);border:1px solid var(--card-border);border-radius:10px;padding:16px 18px;
+  }
+  .summary-card h3{margin:0 0 6px;font-size:1em;color:var(--accent);}
+  .summary-card p{margin:0;font-size:0.92em;color:var(--text);}
+  .news-item{
+    background:var(--card);border:1px solid var(--card-border);border-radius:10px;
+    padding:16px 18px;margin-bottom:14px;
+  }
+  .news-item h3{margin:0 0 8px;font-size:1.02em;}
+  .news-item .impact{font-size:0.88em;color:var(--text-dim);border-top:1px dashed var(--card-border);padding-top:8px;margin-top:8px;}
+  .news-item .impact b{color:var(--accent);}
+  ul.source-list{padding-left:20px;font-size:0.9em;}
+  ul.source-list li{margin-bottom:6px;}
+  ul.source-list a{color:var(--accent);text-decoration:none;word-break:break-all;}
+  ul.source-list a:hover{text-decoration:underline;}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--card-border);text-align:center;color:var(--text-dim);font-size:0.82em;}
+  .back-top{display:inline-block;margin-top:8px;color:var(--accent);text-decoration:none;font-size:0.85em;}
+  @media(max-width:600px){
+    nav.toc ol{columns:1;}
+    table{font-size:0.78em;}
+    thead th,tbody td{padding:8px 6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>📈 週市場績效分析報告</h1>
+  <div class="sub">報告日期：2026-07-11（週日）　數據截至：2026-07-10（週五）收盤</div>
+</header>
+
+<div class="disclaimer-top">本報告由 AI 自動生成，僅供參考，不構成投資建議。所有數據以官方公佈資料為準。</div>
+
+<nav class="toc" id="toc">
+  <h2>快速導覽</h2>
+  <ol>
+    <li><a href="#sec1">一、全球主要市場表現</a></li>
+    <li><a href="#sec2">二、重點投資標的表現</a></li>
+    <li><a href="#sec3">三、本週 ETF 績效十強</a></li>
+    <li><a href="#sec4">四、市場總結與觀察</a></li>
+    <li><a href="#sec5">五、本週最重要五項投資新聞</a></li>
+    <li><a href="#sec6">六、數據來源</a></li>
+  </ol>
+</nav>
+
+<!-- ============ SECTION 1 ============ -->
+<section id="sec1">
+  <h2 class="section-title">一、全球主要市場表現 <span class="en">Global Markets</span></h2>
+
+  <div class="price-strip">
+    <div class="price-card"><div class="name">S&P 500</div><div class="price">7,575.39</div><div class="chg up">▲ +0.42%</div></div>
+    <div class="price-card"><div class="name">NASDAQ</div><div class="price">26,281.61</div><div class="chg up">▲ +0.29%</div></div>
+    <div class="price-card"><div class="name">DJIA</div><div class="price">52,637.01</div><div class="chg up">▲ +0.29%</div></div>
+    <div class="price-card"><div class="name">台灣加權指數</div><div class="price">45,354.61</div><div class="chg flat">▲ 0.00%</div></div>
+    <div class="price-card"><div class="name">BTC</div><div class="price">$63,184.80</div><div class="chg up">▲ +1.5%</div></div>
+    <div class="price-card"><div class="name">ETH</div><div class="price">$1,744.28</div><div class="chg up">▲ +0.1%</div></div>
+    <div class="price-card"><div class="name">黃金</div><div class="price">$4,118.80</div><div class="chg down">▼ 週跌1.70%</div></div>
+    <div class="price-card"><div class="name">WTI原油</div><div class="price">$71.77</div><div class="chg up">▲ 週漲3.5%</div></div>
+  </div>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead>
+      <tr><th>市場 / 指數</th><th>近一週</th><th>近一個月</th><th>近三個月</th><th>年初至今 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S&P 500（美股）</td><td class="up">▲ +1.23%</td><td class="up">▲ +2.30%</td><td class="flat">數據待確認</td><td class="up">▲ +10.0%</td></tr>
+      <tr><td>NASDAQ Composite（美股）</td><td class="up">▲ +0.93%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="up">▲ +11.5%</td></tr>
+      <tr><td>Dow Jones DJIA（美股）</td><td class="up">▲ +0.63%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="up">▲ +11.0%</td></tr>
+      <tr><td>台灣加權指數 TAIEX</td><td class="down">▼ -3.05%</td><td class="up">▲ +4.93%</td><td class="up">▲ +28.06%</td><td class="up">▲ +56.59%</td></tr>
+      <tr><td>比特幣 BTC</td><td class="up">▲ +2.8%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="down">▼ -27.54%</td></tr>
+      <tr><td>以太幣 ETH</td><td class="up">▲ +2.7%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="down">▼ -40.22%</td></tr>
+      <tr><td>黃金 Gold</td><td class="down">▼ -1.70%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td></tr>
+      <tr><td>WTI 原油</td><td class="up">▲ +3.5%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source-note">註：美股近一週報酬以 2026/07/02（7/3 因國慶日休市，採前一交易日）收盤價與 2026/07/10 收盤價計算；台股、加密貨幣、貴金屬與原油數據取自 StockQ.org 及即時新聞報導，部分期間數據來源未提供，標示為「數據待確認」。</p>
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<!-- ============ SECTION 2 ============ -->
+<section id="sec2">
+  <h2 class="section-title">二、重點投資標的表現 <span class="en">Key Holdings — Multi-Period Returns</span></h2>
+  <div class="tbl-scroll">
+  <table>
+    <thead>
+      <tr><th>代號</th><th>ETF / 基金名稱</th><th>近一週</th><th>本月以來</th><th>近一個月</th><th>近六個月</th><th>今年以來 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0050</td><td>元大台灣50</td><td class="down">▼ -2.76%</td><td class="down">▼ -1.86%</td><td class="up">▲ +2.22%</td><td class="up">▲ +51.47%</td><td class="up">▲ +61.28%</td></tr>
+      <tr><td>0056</td><td>元大高股息</td><td class="up">▲ +0.10%</td><td class="down">▼ -1.13%</td><td class="up">▲ +2.73%</td><td class="up">▲ +40.78%</td><td class="up">▲ +43.34%</td></tr>
+      <tr><td>00713</td><td>元大台灣高息低波</td><td class="up">▲ +1.09%</td><td class="up">▲ +0.58%</td><td class="up">▲ +1.76%</td><td class="up">▲ +18.73%</td><td class="up">▲ +19.78%</td></tr>
+      <tr><td>00757</td><td>統一FANG+</td><td class="up">▲ +1.99%</td><td class="up">▲ +3.03%</td><td class="up">▲ +1.28%</td><td class="up">▲ +11.27%</td><td class="up">▲ +10.75%</td></tr>
+      <tr><td>00919</td><td>群益台灣精選高息</td><td class="up">▲ +2.64%</td><td class="up">▲ +1.59%</td><td class="down">▼ -2.44%</td><td class="up">▲ +30.65%</td><td class="up">▲ +33.79%</td></tr>
+      <tr><td>00981A<span class="badge active">主動式</span></td><td>統一台股增長</td><td class="down">▼ -6.55%</td><td class="down">▼ -4.25%</td><td class="down">▼ -4.10%</td><td class="up">▲ +79.45%</td><td class="up">▲ +77.11%</td></tr>
+      <tr><td>00988A<span class="badge active">主動式</span></td><td>統一全球創新</td><td class="down">▼ -12.23%</td><td class="down">▼ -13.96%</td><td class="down">▼ -8.28%</td><td class="up">▲ +82.75%</td><td class="up">▲ +90.18%</td></tr>
+      <tr><td>ACDD01</td><td>安聯台灣大壩基金-A累積型(台幣)</td><td class="down">▼ -6.44%</td><td class="flat">數據待確認</td><td class="down">▼ -0.65%</td><td class="up">▲ +92.41%</td><td class="up">▲ +96.78%</td></tr>
+      <tr><td>ACDD04</td><td>安聯台灣科技基金</td><td class="down">▼ -7.93%</td><td class="flat">數據待確認</td><td class="up">▲ +0.15%</td><td class="up">▲ +100.02%</td><td class="up">▲ +103.65%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source-note">資料來源：ETF 數據取自 StockQ.org（台灣ETF績效比較）；安聯基金數據取自 MoneyDJ 理財網（淨值日期 2026/07/09）。00981A、00988A 為主動式 ETF。</p>
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<!-- ============ SECTION 3 ============ -->
+<section id="sec3">
+  <h2 class="section-title">三、本週 ETF 績效十強 <span class="en">Weekly Top 10 ETFs</span></h2>
+  <div class="tbl-scroll">
+  <table>
+    <thead>
+      <tr><th>排名</th><th>代號</th><th>ETF名稱</th><th>近一週</th><th>本月以來</th><th>近一個月</th><th>今年以來 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="rank1">🥇 1</td><td>00700</td><td>富邦恒生國企</td><td class="up">▲ +6.13%</td><td class="up">▲ +8.51%</td><td class="down">▼ -1.73%</td><td class="down">▼ -9.37%</td></tr>
+      <tr><td class="rank2">🥈 2</td><td>00960</td><td>野村全球航運龍頭</td><td class="up">▲ +6.03%</td><td class="up">▲ +4.84%</td><td class="up">▲ +0.45%</td><td class="up">▲ +23.25%</td></tr>
+      <tr><td class="rank3">🥉 3</td><td>00703</td><td>台新MSCI中國</td><td class="up">▲ +5.27%</td><td class="up">▲ +8.07%</td><td class="up">▲ +0.95%</td><td class="down">▼ -10.93%</td></tr>
+      <tr><td>4</td><td>00678</td><td>群益那斯達克生技</td><td class="up">▲ +4.25%</td><td class="up">▲ +3.99%</td><td class="up">▲ +18.59%</td><td class="up">▲ +21.51%</td></tr>
+      <tr><td>5</td><td>00919</td><td>群益台灣精選高息</td><td class="up">▲ +2.64%</td><td class="up">▲ +1.59%</td><td class="down">▼ -2.44%</td><td class="up">▲ +33.79%</td></tr>
+      <tr><td>6</td><td>00897</td><td>富邦基因免疫生技</td><td class="up">▲ +2.58%</td><td class="up">▲ +1.77%</td><td class="up">▲ +19.40%</td><td class="up">▲ +32.15%</td></tr>
+      <tr><td>7</td><td>00972</td><td>野村日本動能高息</td><td class="up">▲ +2.46%</td><td class="up">▲ +3.52%</td><td class="up">▲ +3.58%</td><td class="up">▲ +11.43%</td></tr>
+      <tr><td>8</td><td>00926</td><td>凱基全球菁英55</td><td class="up">▲ +2.40%</td><td class="up">▲ +2.86%</td><td class="up">▲ +1.86%</td><td class="up">▲ +7.98%</td></tr>
+      <tr><td>9</td><td>00998A<span class="badge active">主動式</span></td><td>復華金融股息</td><td class="up">▲ +2.09%</td><td class="up">▲ +3.26%</td><td class="up">▲ +5.22%</td><td class="up">▲ +11.02%</td></tr>
+      <tr><td>10</td><td>00757</td><td>統一FANG+</td><td class="up">▲ +1.99%</td><td class="up">▲ +3.03%</td><td class="up">▲ +1.28%</td><td class="up">▲ +10.75%</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="source-note">篩選規則：依「近一週」報酬率排序取前10名；已排除代碼含L/R結尾（槓桿/反向）及名稱含「正2」「反1」「期元大」「期街口」「期富邦」之商品。資料來源：StockQ.org。</p>
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<!-- ============ SECTION 4 ============ -->
+<section id="sec4">
+  <h2 class="section-title">四、市場總結與觀察 <span class="en">Market Summary</span></h2>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h3>本週氛圍</h3>
+      <p>美股在科技股領軍下續創高點，NVIDIA、Meta表現亮眼，南韓記憶體大廠SK海力士(SK Hynix)在那斯達克掛牌首日暴漲逾13%，創外國企業赴美上市募資新紀錄；台股則因美伊地緣政治風險再起及颱風巴威侵襲雙重夾擊，單週劇烈震盪逾千點；加密貨幣自6月重挫後溫和反彈，惟今年迄今仍處虧損；黃金避險買盤降溫收黑，原油則因荷姆茲海峽航運中斷疑慮走高。整體而言，本週「美股強、台股弱、地緣風險升溫」為主旋律。</p>
+    </div>
+    <div class="summary-card">
+      <h3>美股 US Equities</h3>
+      <p>S&P 500、NASDAQ、道瓊三大指數本週均收紅，S&P 500週線上漲約1.2%，年初至今累計上漲10.0%。Fed於7/10發布半年度貨幣政策報告，維持聯邦基金利率於3.5%–3.75%不變，但受中東衝突推升能源價格、早期關稅及AI設備需求暴增三重因素影響，5月PCE通膨已反彈至4.1%，核心PCE達3.4%，政策立場維持高度數據依賴，下次利率決議訂於7月30日。</p>
+    </div>
+    <div class="summary-card">
+      <h3>台股 Taiwan Equities</h3>
+      <p>加權指數本週收45,354.61點，單週下跌約3.05%（本月以來仍下跌1.67%，但近一個月回顧仍上漲4.93%），週三（7/7）盤中一度重挫逾千點、震盪超過1,100點，主因美伊衝突再起及颱風巴威影響（台北市7/10宣布停班停課）。台積電將於7/16召開第二季法說會，市場關注AI需求展望是否支撐大盤重返高點。</p>
+    </div>
+    <div class="summary-card">
+      <h3>加密貨幣 Crypto</h3>
+      <p>比特幣、以太幣本週分別上漲約2.8%、2.7%，自6月「四年最差月份」的重挫後出現反彈，市場關注美國CLARITY法案進展及ETF資金流入帶來的動能。惟年初至今比特幣仍下跌約27.5%，以太幣下跌逾40%，顯示今年加密貨幣市場整體仍偏空。</p>
+    </div>
+    <div class="summary-card">
+      <h3>大宗商品 Commodities</h3>
+      <p>黃金現貨價格約4,118.8美元/盎司，週線下跌1.70%，本週初一度受避險買盤支撐衝高至4,155美元附近，隨美伊局勢升溫又緩和而拉回；WTI原油收在71–72美元區間，受荷姆茲海峽緊張情勢推動週漲約3.5%，市場擔憂全球約27%原油海運貿易恐受阻。</p>
+    </div>
+    <div class="summary-card">
+      <h3>下週關注重點</h3>
+      <p>1) 美伊局勢是否進一步降溫或升溫，及荷姆茲海峽航運動態；2) 台積電7/16第二季法說會及AI供應鏈展望；3) Fed 7月30日利率決議前瞻與通膨數據；4) SK海力士掛牌後續股價表現及晶片股資金動能；5) 台股能否在颱風及地緣風險後重返本季高點。</p>
+    </div>
+  </div>
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<!-- ============ SECTION 5 ============ -->
+<section id="sec5">
+  <h2 class="section-title">五、本週最重要五項投資新聞 <span class="en">Top 5 News</span></h2>
+
+  <div class="news-item">
+    <h3>1. Fed半年度貨幣政策報告：利率凍結3.5%–3.75%，通膨升至4.1%</h3>
+    <p>美國聯準會於7月10日向國會提交最新半年度貨幣政策報告，將聯邦基金利率目標區間維持在3.5%–3.75%不變。受中東衝突推升能源價格、早期關稅效應及AI設備需求暴增三重因素影響，截至5月的PCE年增率已反彈至4.1%，核心PCE攀升至3.4%，遠高於2%目標。FOMC重申將全面致力於實現物價穩定，未來政策高度依賴數據，下次利率決議訂於7月30日。</p>
+    <p class="impact"><b>市場影響：</b>通膨升溫削弱市場對年內降息的預期，但美股本週仍在科技股帶動下創高，顯示市場暫時將焦點放在企業獲利與AI題材，而非緊縮風險；後續需留意7/30決議是否釋出鷹派訊號。</p>
+  </div>
+
+  <div class="news-item">
+    <h3>2. 美伊衝突再起，荷姆茲海峽緊張推升油價</h3>
+    <p>美軍近日對伊朗發動新一輪空襲，伊朗則以飛彈、無人機及對商船的攻擊反擊美軍位於巴林、科威特的軍事基地，先前的停火出現鬆動跡象。荷姆茲海峽油輪通行實質停滯，戰爭險保費暴增至平時的4至5倍，WTI原油一度衝高至72美元以上、布蘭特原油最高觸及76美元。</p>
+    <p class="impact"><b>市場影響：</b>全球約27%原油海運貿易經荷姆茲海峽運輸，若衝突持續恐推升能源成本並加劇通膨壓力，同時也是本週台股重挫、避險資產（黃金、美元）需求波動的主要導火線之一。</p>
+  </div>
+
+  <div class="news-item">
+    <h3>3. SK海力士那斯達克掛牌，創外國企業赴美最大IPO紀錄</h3>
+    <p>南韓第二大市值企業、記憶體晶片大廠SK海力士於7/10在那斯達克以ADR形式掛牌（代號SKHY），募資達265億美元，超越阿里巴巴2014年在美掛牌的250億美元，成為外國企業赴美上市募資規模之最。掛牌首日股價自149美元發行價大漲逾13%，收在168美元上下，市值逼近1兆美元。</p>
+    <p class="impact"><b>市場影響：</b>顯示AI伺服器記憶體需求持續強勁，帶動那斯達克及費城半導體指數走高；也為投資人提供參與全球記憶體晶片龍頭成長的新管道，半導體supply chain相關ETF（如00893、00892）可望受惠情緒帶動。</p>
+  </div>
+
+  <div class="news-item">
+    <h3>4. 台股單週重挫逾3%，美伊風險與颱風巴威雙重夾擊</h3>
+    <p>台股加權指數本週收45,354.61點，單週下跌約3.05%。週三（7/7）盤中因美伊衝突升溫由紅翻黑，早盤最高46,967點、午後一度殺至45,845點，單日震盪逾1,100點，終場下跌1,077點、跌幅2.31%，成交量達1.17兆元。颱風巴威來襲，台北市政府宣布7/10停班停課，進一步影響市場交投情緒。</p>
+    <p class="impact"><b>市場影響：</b>短線波動加劇但月線仍上漲近5%，顯示中期資金動能未變；市場焦點轉向7/16台積電法說會，若AI需求展望維持樂觀，有機會帶動大盤在地緣風險緩解後重返高點。</p>
+  </div>
+
+  <div class="news-item">
+    <h3>5. 比特幣、以太幣從6月低谷反彈，CLARITY法案添動能</h3>
+    <p>比特幣、以太幣本週分別上漲約2.8%、2.7%，延續7月以來的回穩走勢，此前比特幣才剛經歷四年來最差的單月表現（6月）。市場人士指出，ETF資金持續流入及美國國會研議中的《CLARITY法案》（加密貨幣監管框架）為近期反彈的主要催化劑；惟週三、週四受美伊衝突消息影響一度回落。</p>
+    <p class="impact"><b>市場影響：</b>加密貨幣市場情緒轉為謹慎樂觀，但年初至今比特幣、以太幣仍分別下跌約27.5%、40.2%，顯示要收復失土仍需更明確的監管進展與資金面支持，短期仍將受地緣政治新聞牽動高波動。</p>
+  </div>
+
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<!-- ============ SECTION 6 ============ -->
+<section id="sec6">
+  <h2 class="section-title">六、數據來源 <span class="en">Sources</span></h2>
+  <ul class="source-list">
+    <li><a href="https://www.stockq.org/etf/etf_comparison.php" target="_blank">StockQ.org — 台灣ETF績效比較</a></li>
+    <li><a href="https://www.stockq.org/index/TWSE.php" target="_blank">StockQ.org — 台灣加權指數</a></li>
+    <li><a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD01" target="_blank">MoneyDJ理財網 — 安聯台灣大壩基金-A累積型(台幣)</a></li>
+    <li><a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD04" target="_blank">MoneyDJ理財網 — 安聯台灣科技基金</a></li>
+    <li><a href="https://www.fool.com/coverage/stock-market-today/2026/07/10/stock-market-today-july-10-markets-edge-higher-and-sk-hynix-soars-on-debut/" target="_blank">The Motley Fool — Stock Market Today, July 10, 2026</a></li>
+    <li><a href="https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-july-2-2026" target="_blank">TheStreet — Stock Market Today, July 2, 2026</a></li>
+    <li><a href="https://www.cnbc.com/2026/07/10/sk-hynix-skhy-stock-nasdaq.html" target="_blank">CNBC — SK Hynix Nasdaq Debut</a></li>
+    <li><a href="https://www.blocktempo.com/fed-monetary-policy-report-july-2026-pce-inflation-hits-4-1/" target="_blank">動區動趨 — Fed半年度貨幣政策報告</a></li>
+    <li><a href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-july-10-2026-up-nearly-3-since-last-friday-130101171.html" target="_blank">Yahoo Finance — Bitcoin and Ethereum Prices, July 10, 2026</a></li>
+    <li><a href="https://www.forbes.com/advisor/investing/gold-price/" target="_blank">Forbes Advisor — Gold Price Today</a></li>
+    <li><a href="https://www.forbes.com/advisor/investing/oil-prices-today/" target="_blank">Forbes Advisor — Crude Oil Price Today</a></li>
+    <li><a href="https://www.congress.gov/crs-product/R45281" target="_blank">Congress.gov CRS — Iran Conflict and the Strait of Hormuz</a></li>
+    <li><a href="https://winvest.tw/News/Detail/88765" target="_blank">Win投資 — 台股盤後 2026/07/07</a></li>
+  </ul>
+  <a class="back-top" href="#toc">↑ 回頂部導覽</a>
+</section>
+
+<footer>
+  <div>本報告由 AI 自動生成，僅供參考，不構成投資建議。</div>
+  <div>Weekly Market Performance Report · Generated 2026-07-11</div>
+</footer>
+
+</div>
+</body>
+</html>
