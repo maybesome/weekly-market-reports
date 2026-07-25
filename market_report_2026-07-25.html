@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>週市場績效分析報告 2026-07-25</title>
+<style>
+  :root{
+    --bg:#0f1117;
+    --bg-card:#171a23;
+    --bg-card2:#1c2029;
+    --border:#262b38;
+    --text:#e6e8ef;
+    --text-dim:#9aa1b2;
+    --green:#22c55e;
+    --red:#ef4444;
+    --accent:#4f7cff;
+    --gold:#f5c542;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:24px 16px 80px;}
+  header{padding:28px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px;}
+  header h1{font-size:1.6rem;margin:0 0 6px;}
+  header .sub{color:var(--text-dim);font-size:.92rem;}
+  header .badge{display:inline-block;background:var(--accent);color:#fff;font-size:.72rem;padding:2px 8px;border-radius:20px;margin-left:8px;vertical-align:middle;}
+  nav.toc{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:28px;}
+  nav.toc .toc-title{font-size:.82rem;color:var(--text-dim);margin-bottom:8px;letter-spacing:.05em;}
+  nav.toc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+  nav.toc a{display:inline-block;padding:6px 12px;background:var(--bg-card2);border:1px solid var(--border);border-radius:20px;color:var(--text);text-decoration:none;font-size:.85rem;}
+  nav.toc a:hover{border-color:var(--accent);color:var(--accent);}
+  section{margin-bottom:40px;scroll-margin-top:16px;}
+  h2{font-size:1.2rem;border-left:4px solid var(--accent);padding-left:10px;margin:0 0 16px;}
+  h2 .num{color:var(--accent);margin-right:6px;}
+  .price-strip{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;margin-bottom:20px;}
+  .price-card{flex:0 0 auto;min-width:130px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .price-card .name{font-size:.75rem;color:var(--text-dim);margin-bottom:4px;}
+  .price-card .price{font-size:1.05rem;font-weight:600;}
+  .price-card .chg{font-size:.8rem;margin-top:2px;}
+  table{width:100%;border-collapse:collapse;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:.86rem;}
+  table caption{caption-side:top;text-align:left;color:var(--text-dim);font-size:.78rem;padding-bottom:8px;}
+  th,td{padding:10px 10px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;}
+  th:nth-child(2),td:nth-child(2){text-align:left;}
+  th{background:var(--bg-card2);color:var(--text-dim);font-weight:600;font-size:.78rem;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:rgba(255,255,255,0.02);}
+  .up{color:var(--green);font-weight:600;}
+  .down{color:var(--red);font-weight:600;}
+  .flat{color:var(--text-dim);}
+  .tag{display:inline-block;font-size:.68rem;padding:1px 6px;border-radius:6px;background:rgba(79,124,255,.15);color:var(--accent);margin-left:6px;}
+  .est{font-size:.68rem;color:var(--text-dim);}
+  .rank1{color:var(--gold);font-weight:700;}
+  .table-scroll{overflow-x:auto;}
+  .obs-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .obs-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+  .obs-card h3{margin:0 0 8px;font-size:.95rem;color:var(--accent);}
+  .obs-card p{margin:0;color:var(--text);font-size:.88rem;}
+  .news-item{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px;}
+  .news-item h3{margin:0 0 8px;font-size:.98rem;}
+  .news-item .impact{margin-top:10px;padding-top:10px;border-top:1px dashed var(--border);font-size:.85rem;color:var(--text-dim);}
+  .news-item .impact b{color:var(--text);}
+  ol.sources{padding-left:20px;font-size:.85rem;color:var(--text-dim);}
+  ol.sources li{margin-bottom:6px;}
+  ol.sources a{color:var(--accent);text-decoration:none;}
+  ol.sources a:hover{text-decoration:underline;}
+  footer{border-top:1px solid var(--border);padding-top:18px;color:var(--text-dim);font-size:.78rem;text-align:center;}
+  .disclaimer{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;font-size:.8rem;color:var(--text-dim);margin-top:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>週市場績效分析報告 <span class="badge">2026-07-25</span></h1>
+  <div class="sub">報告日期：2026-07-25（週六）｜ 數據截至 2026-07-24（週五）收盤 ｜ 本報告由 AI 自動生成，僅供參考</div>
+</header>
+
+<nav class="toc">
+  <div class="toc-title">快速導覽</div>
+  <ul>
+    <li><a href="#sec1">一、全球主要市場表現</a></li>
+    <li><a href="#sec2">二、重點投資標的表現</a></li>
+    <li><a href="#sec3">三、本週 ETF 績效十強</a></li>
+    <li><a href="#sec4">四、市場總結與觀察</a></li>
+    <li><a href="#sec5">五、本週投資新聞</a></li>
+    <li><a href="#sec6">六、數據來源</a></li>
+  </ul>
+</nav>
+
+<section id="sec1">
+  <h2><span class="num">一、</span>全球主要市場表現</h2>
+
+  <div class="price-strip">
+    <div class="price-card"><div class="name">S&amp;P 500</div><div class="price">7,411.98</div><div class="chg down">▼ 週 -0.6%</div></div>
+    <div class="price-card"><div class="name">NASDAQ 指數</div><div class="price">24,975.82</div><div class="chg down">▼ 週 -2.1%</div></div>
+    <div class="price-card"><div class="name">道瓊工業指數</div><div class="price">51,947.25</div><div class="chg down">▼ 週 -0.4%</div></div>
+    <div class="price-card"><div class="name">台灣加權指數</div><div class="price">43,654.84</div><div class="chg up">▲ 週 +2.3%</div></div>
+    <div class="price-card"><div class="name">比特幣 BTC</div><div class="price">$64,985</div><div class="chg down">▼ 日 -1.6%</div></div>
+    <div class="price-card"><div class="name">以太幣 ETH</div><div class="price">$1,881</div><div class="chg down">▼ 日 -2.9%</div></div>
+    <div class="price-card"><div class="name">黃金</div><div class="price">$4,052/oz</div><div class="chg up">▲ 週小幅上漲</div></div>
+    <div class="price-card"><div class="name">WTI 原油</div><div class="price">$89.42/bbl</div><div class="chg up">▲ 週 +10%</div></div>
+  </div>
+
+  <div class="table-scroll">
+  <table>
+    <caption>報酬率單位：% ｜ 資料時間：2026-07-24 收盤（部分台股/商品數據標註來源與日期）</caption>
+    <thead>
+      <tr><th>市場/指數</th><th>近一週</th><th>近一個月</th><th>近三個月</th><th>年初至今 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S&amp;P 500</td><td class="down">▼ -0.6%</td><td class="down">▼ -1.1% <span class="est">(估)</span></td><td class="flat">數據待確認</td><td class="up">▲ +9.0%</td></tr>
+      <tr><td>NASDAQ Composite</td><td class="down">▼ -2.1%</td><td class="down">▼ -4.7% <span class="est">(估)</span></td><td class="flat">數據待確認</td><td class="up">▲ +10.2% <span class="est">(約，7/17資料)</span></td></tr>
+      <tr><td>Dow Jones (DJIA)</td><td class="down">▼ -0.4%</td><td class="down">▼ -0.7% <span class="est">(估)</span></td><td class="flat">數據待確認</td><td class="up">▲ +7.9% <span class="est">(7/20資料)</span></td></tr>
+      <tr><td>台灣加權指數 TAIEX</td><td class="up">▲ +2.3% <span class="est">(依收盤價計算)</span></td><td class="down">▼ -5.4% <span class="est">(本月以來，計算)</span></td><td class="up">▲ +18.9% <span class="est">(StockQ，7/23)</span></td><td class="up">▲ +54.9% <span class="est">(StockQ，7/23)</span></td></tr>
+      <tr><td>比特幣 Bitcoin (BTC)</td><td class="down">▼ 約-2% <span class="est">(估)</span></td><td class="up">▲ +11.7%</td><td class="flat">數據待確認</td><td class="flat">數據待確認 <span class="est">(來源分歧，約-10%~持平)</span></td></tr>
+      <tr><td>以太幣 Ethereum (ETH)</td><td class="down">▼ 約-3% <span class="est">(估)</span></td><td class="up">▲ +19.7%</td><td class="flat">數據待確認</td><td class="up">▲ 約 +40%</td></tr>
+      <tr><td>黃金 Gold</td><td class="up">▲ 小幅上漲 <span class="est">(估)</span></td><td class="up">▲ +0.6%</td><td class="flat">數據待確認</td><td class="flat">數據待確認</td></tr>
+      <tr><td>WTI 原油</td><td class="up">▲ +10%</td><td class="up">▲ +24.3%</td><td class="flat">數據待確認</td><td class="up">▲ +37.8%</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec2">
+  <h2><span class="num">二、</span>重點投資標的表現（多期間報酬率）</h2>
+  <div class="table-scroll">
+  <table>
+    <caption>資料來源：StockQ.org（ETF，2026-07-24）／MoneyDJ（安聯基金，2026-07-24淨值）</caption>
+    <thead>
+      <tr><th>代號</th><th>ETF / 基金名稱</th><th>近一週</th><th>本月以來</th><th>近一個月</th><th>近六個月</th><th>今年以來 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>0050</td><td>元大台灣50</td><td class="up">▲ +1.55%</td><td class="down">▼ -5.66%</td><td class="down">▼ -5.09%</td><td class="up">▲ +40.76%</td><td class="up">▲ +55.03%</td></tr>
+      <tr><td>0056</td><td>元大高股息</td><td class="down">▼ -1.08%</td><td class="down">▼ -5.73%</td><td class="down">▼ -5.55%</td><td class="up">▲ +33.05%</td><td class="up">▲ +36.67%</td></tr>
+      <tr><td>00713</td><td>元大台灣高息低波</td><td class="up">▲ +1.24%</td><td class="up">▲ +1.33%</td><td class="up">▲ +0.83%</td><td class="up">▲ +18.10%</td><td class="up">▲ +20.67%</td></tr>
+      <tr><td>00757</td><td>統一FANG+</td><td class="down">▼ -1.34%</td><td class="up">▲ +1.26%</td><td class="up">▲ +2.47%</td><td class="up">▲ +12.71%</td><td class="up">▲ +8.84%</td></tr>
+      <tr><td>00919</td><td>群益台灣精選高息</td><td class="up">▲ +1.94%</td><td class="down">▼ -0.03%</td><td class="down">▼ -2.38%</td><td class="up">▲ +24.33%</td><td class="up">▲ +31.65%</td></tr>
+      <tr><td>00981A</td><td>主動統一台股增長 <span class="tag">主動式</span></td><td class="up">▲ +4.20%</td><td class="down">▼ -11.96%</td><td class="down">▼ -12.52%</td><td class="up">▲ +55.51%</td><td class="up">▲ +62.86%</td></tr>
+      <tr><td>00988A</td><td>主動統一全球創新 <span class="tag">主動式</span></td><td class="up">▲ +6.03%</td><td class="down">▼ -22.71%</td><td class="down">▼ -23.57%</td><td class="up">▲ +49.48%</td><td class="up">▲ +70.83%</td></tr>
+      <tr><td>ACDD01</td><td>安聯台灣大壩基金-A(台幣)</td><td class="up">▲ +2.86% <span class="est">(StockQ)</span></td><td class="flat">數據待確認</td><td class="down">▼ -16.98%</td><td class="up">▲ +55.96%</td><td class="up">▲ +74.87%</td></tr>
+      <tr><td>ACDD04</td><td>安聯台灣科技基金</td><td class="up">▲ +2.37% <span class="est">(StockQ)</span></td><td class="flat">數據待確認</td><td class="down">▼ -18.27%</td><td class="up">▲ +61.64%</td><td class="up">▲ +81.65%</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec3">
+  <h2><span class="num">三、</span>本週 ETF 績效十強</h2>
+  <div class="table-scroll">
+  <table>
+    <caption>篩選規則：依「近一週」報酬率排序；排除代碼L/R結尾（槓桿/反向）與期貨型ETF（期元大／期街口／期富邦）｜資料來源：StockQ.org (2026-07-24)</caption>
+    <thead>
+      <tr><th>排名</th><th>代號</th><th>ETF名稱</th><th>近一週</th><th>本月以來</th><th>近一個月</th><th>今年以來 YTD</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="rank1">🥇 1</td><td>00909</td><td>國泰數位支付服務</td><td class="up">▲ +9.69%</td><td class="down">▼ -3.85%</td><td class="down">▼ -6.70%</td><td class="up">▲ +21.49%</td></tr>
+      <tr><td class="rank1">🥈 2</td><td>00962</td><td>台新AI優息動能</td><td class="up">▲ +6.53%</td><td class="down">▼ -0.40%</td><td class="down">▼ -0.13%</td><td class="up">▲ +38.18%</td></tr>
+      <tr><td class="rank1">🥉 3</td><td>00988A</td><td>主動統一全球創新 <span class="tag">主動式</span></td><td class="up">▲ +6.03%</td><td class="down">▼ -22.71%</td><td class="down">▼ -23.57%</td><td class="up">▲ +70.83%</td></tr>
+      <tr><td>4</td><td>00830</td><td>國泰費城半導體</td><td class="up">▲ +5.96%</td><td class="down">▼ -9.97%</td><td class="down">▼ -8.95%</td><td class="up">▲ +52.20%</td></tr>
+      <tr><td>5</td><td>00946</td><td>群益科技高息成長</td><td class="up">▲ +5.82%</td><td class="down">▼ -2.08%</td><td class="down">▼ -1.63%</td><td class="up">▲ +57.08%</td></tr>
+      <tr><td>6</td><td>00911</td><td>兆豐洲際半導體</td><td class="up">▲ +5.69%</td><td class="down">▼ -15.45%</td><td class="down">▼ -14.17%</td><td class="up">▲ +70.99%</td></tr>
+      <tr><td>7</td><td>00990A</td><td>主動元大AI新經濟 <span class="tag">主動式</span></td><td class="up">▲ +5.62%</td><td class="down">▼ -21.27%</td><td class="down">▼ -20.23%</td><td class="up">▲ +60.24%</td></tr>
+      <tr><td>8</td><td>00934</td><td>中信成長高股息</td><td class="up">▲ +5.29%</td><td class="down">▼ -2.69%</td><td class="down">▼ -3.07%</td><td class="up">▲ +32.61%</td></tr>
+      <tr><td>9</td><td>00955</td><td>中信日本商社</td><td class="up">▲ +5.11%</td><td class="up">▲ +6.85%</td><td class="up">▲ +6.93%</td><td class="up">▲ +12.53%</td></tr>
+      <tr><td>10</td><td>00918</td><td>大華優利高填息30</td><td class="up">▲ +4.80%</td><td class="up">▲ +1.15%</td><td class="up">▲ +1.31%</td><td class="up">▲ +43.74%</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="sec4">
+  <h2><span class="num">四、</span>市場總結與觀察</h2>
+  <div class="obs-grid">
+    <div class="obs-card">
+      <h3>本週氛圍</h3>
+      <p>本週市場呈現高波動、風險偏好轉弱的格局。中東地緣政治衝突持續升級（美國對伊朗展開第13天空襲、胡塞武裝攻擊沙國油輪），推升油價單週跳漲逾10%，帶動通膨疑慮升溫，壓抑風險性資產表現。同時，市場正屏息以待7/28-29 Fed利率決策會議，聯準會在新任主席Kevin Warsh帶領下轉向鷹派，市場對9月再度升息的機率評估已升至7-8成。</p>
+    </div>
+    <div class="obs-card">
+      <h3>美股</h3>
+      <p>三大指數本週全數收黑：那斯達克綜合指數重挫2.1%，領跌於AI資本支出疑慮及晶片股獲利了結賣壓（如Oracle單週跌逾4%）；S&amp;P 500與道瓊分別下跌0.6%與0.4%，週五雖有落底回穩跡象，但仍難以扭轉連兩週收黑的格局。年初至今S&amp;P 500總報酬仍有+9.0%，顯示中長期多頭格局未變。</p>
+    </div>
+    <div class="obs-card">
+      <h3>台股</h3>
+      <p>台灣加權指數本週經歷罕見的巨幅震盪：從7/17單日重挫逾6%的恐慌賣壓，到7/21單日大漲逾4%的強力反彈（受台積電傳出2027年全面調漲代工價格5%-10%激勵），全週收在43,654點，累計上漲約2.3%。個股與主動式ETF表現分歧劇烈，00909國泰數位支付服務、00962台新AI優息動能等主題型ETF單週漲幅逼近甚至超過6-10%，而部分主動式台股基金因月初以來大幅拉回，月報酬仍呈現二位數負值，顯示台股當前呈現「高波動、輪動快」特徵。</p>
+    </div>
+    <div class="obs-card">
+      <h3>加密貨幣</h3>
+      <p>比特幣與以太幣本週同步走弱，主因公債殖利率走升削弱非孳息資產吸引力，加上比特幣現貨ETF單日淨流出逾2億美元，終結先前連續多週淨流入的態勢。惟以太幣近一個月漲幅仍達+19.7%，明顯優於比特幣的+11.7%，年初至今以太幣亦是主流加密貨幣中表現最佳者（約+40%）。</p>
+    </div>
+    <div class="obs-card">
+      <h3>大宗商品</h3>
+      <p>地緣政治風險是本週商品市場的主旋律：WTI原油單週勁揚約10%，逼近90美元／桶，布蘭特原油一度突破100美元關卡，主因伊朗與胡塞武裝對海灣及紅海油運航道的威脅升高；哈薩克經黑海的原油出口也因裏海管道財團（CPC）碼頭遭攻擊而中斷約8成。黃金則在避險買盤與升息預期的拉鋸下窄幅整理，於4,050美元附近盤整，本週僅小幅上漲。</p>
+    </div>
+    <div class="obs-card">
+      <h3>下週關注重點</h3>
+      <p>1) 7/28-29 Fed利率決策會議及Kevin Warsh記者會，市場關注是否意外升息；2) 中東戰事發展及對Hormuz海峽、紅海航運的實質衝擊；3) 台積電法說後續效應與台股類股輪動；4) 美股科技股Q2財報密集公布期，尤其AI資本支出指引；5) 原油供給面變化是否進一步推升輸入性通膨。</p>
+    </div>
+  </div>
+</section>
+
+<section id="sec5">
+  <h2><span class="num">五、</span>本週最重要五項投資新聞</h2>
+
+  <div class="news-item">
+    <h3>1. Fed 鷹派轉向，7/28-29利率決策會議成焦點</h3>
+    <p>新任Fed主席Kevin Warsh上任後政策風格明顯轉趨鷹派，取消傳統前瞻指引、改採數據導向決策。5月CPI年增4.2%、核心CPI年增2.9%，均遠高於2%目標，PCE物價指數同步偏高。期貨市場目前預期7月會議維持利率不變機率約75%，但9月升息機率已升至7-8成，市場波動度（VIX）明顯走升。</p>
+    <div class="impact"><b>市場影響：</b>利率政策不確定性升高，推升美股與新興市場資產波動度，非孳息資產（黃金、加密貨幣）承壓，美元及公債殖利率則獲得支撐。</div>
+  </div>
+
+  <div class="news-item">
+    <h3>2. 中東戰事持續升級，油價單週飆漲逾10%</h3>
+    <p>美國對伊朗展開第13天連續空襲，川普總統揚言不排除對伊朗發動「大規模攻擊」；伊朗支持的胡塞武裝則攻擊兩艘沙烏地阿拉伯油輪，紅海航運風險急遽升高，亞洲買家已討論改道經蘇伊士運河及繞行非洲運輸沙國原油。裏海管道財團（CPC）黑海碼頭亦遭攻擊，衝擊哈薩克約8成原油出口。WTI原油本週勁揚約10%，布蘭特原油一度衝破100美元。</p>
+    <div class="impact"><b>市場影響：</b>能源價格飆升加劇全球通膨疑慮，JP Morgan估算若布蘭特原油持續在高檔，上半年全球GDP成長恐被壓低0.6個百分點，同時強化市場對Fed維持緊縮的預期。</div>
+  </div>
+
+  <div class="news-item">
+    <h3>3. 台積電傳調漲代工價格，台股單週暴力反彈</h3>
+    <p>市場傳出台積電計畫於2027年將先進與成熟製程價格最高上調10%（基礎漲幅5%-10%），激勵台積電ADR單日狂飆逾5%，帶動費城半導體指數單日大漲逾5%，加權指數在7/21單日大漲逾4%，一舉扭轉7/17單日重挫逾6%的恐慌賣壓，全週最終收漲約2.3%。</p>
+    <div class="impact"><b>市場影響：</b>半導體供應鏈類股與相關ETF（如00830國泰費城半導體、00911兆豐洲際半導體）本週績效領先大盤，惟月初以來的深度拉回尚未完全收復，短線波動仍大。</div>
+  </div>
+
+  <div class="news-item">
+    <h3>4. 美股科技股拋售壓力未歇，AI資本支出疑慮發酵</h3>
+    <p>那斯達克綜合指數本週下跌2.1%，領跌大盤。Netflix第三季營收展望不如預期、Oracle單週重挫逾4%，市場對企業AI相關資本支出的投資報酬率重新評估，晶片股（費半指數SOX）本週初一度單日重挫逾4%，日本、台灣等亞股同步遭到波及。</p>
+    <div class="impact"><b>市場影響：</b>科技股評價修正壓力仍在，但S&amp;P 500年初至今總報酬仍達+9.0%，顯示資金尚未全面撤出風險性資產，僅是階段性獲利了結與類股輪動。</div>
+  </div>
+
+  <div class="news-item">
+    <h3>5. 公債殖利率走升，加密貨幣現貨ETF資金由流入轉流出</h3>
+    <p>美國公債殖利率走升削弱非孳息資產吸引力，比特幣現貨ETF週四單日淨流出約2.25億美元，終結先前連續一週、累計淨流入近10億美元的態勢。比特幣、以太幣本週雙雙走弱，惟兩者近一個月漲幅仍分別達+11.7%與+19.7%。</p>
+    <div class="impact"><b>市場影響：</b>短線資金動能轉弱可能加劇加密貨幣波動，但中期趨勢仍取決於Fed政策方向與機構資金配置意願。</div>
+  </div>
+</section>
+
+<section id="sec6">
+  <h2><span class="num">六、</span>數據來源</h2>
+  <ol class="sources">
+    <li><a href="https://www.stockq.org/etf/etf_comparison.php" target="_blank">StockQ.org - 台灣ETF績效比較</a></li>
+    <li><a href="https://www.stockq.org/index/TWSE.php" target="_blank">StockQ.org - 台灣加權指數</a></li>
+    <li><a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD01" target="_blank">MoneyDJ - 安聯台灣大壩基金-A累積型(台幣)</a></li>
+    <li><a href="https://www.moneydj.com/funddj/ya/yp012000.djhtm?a=ACDD04" target="_blank">MoneyDJ - 安聯台灣科技基金</a></li>
+    <li><a href="https://www.slickcharts.com/sp500/returns/ytd" target="_blank">Slickcharts - S&amp;P 500 YTD Return</a></li>
+    <li><a href="https://www.slickcharts.com/dowjones/returns/ytd" target="_blank">Slickcharts - Dow Jones YTD Return</a></li>
+    <li><a href="https://tradingeconomics.com/commodity/gold" target="_blank">Trading Economics - Gold</a></li>
+    <li><a href="https://tradingeconomics.com/commodity/crude-oil" target="_blank">Trading Economics - Crude Oil (WTI)</a></li>
+    <li><a href="https://finance.yahoo.com/markets/stocks/articles/stock-market-news-july-24-132200865.html" target="_blank">Yahoo Finance - Stock Market News, July 24 2026</a></li>
+    <li><a href="https://www.statmuse.com/money/ask/bitcoin-ytd-return" target="_blank">StatMuse Money - Bitcoin YTD Return</a></li>
+    <li><a href="https://finance.yahoo.com/personal-finance/investing/article/bitcoin-and-ethereum-prices-today-friday-july-24-2026-crypto-prices-retreat-on-higher-us-treasury-yields-152200068.html" target="_blank">Yahoo Finance - Bitcoin and Ethereum Prices, July 24 2026</a></li>
+    <li><a href="https://intellectia.ai/blog/fed-interest-rate-decision-july-2026-market-analysis" target="_blank">Intellectia AI - Fed Interest Rate Decision, July 2026</a></li>
+  </ol>
+
+  <div class="disclaimer">
+    本報告由 AI 自動生成，數據來源於公開網路資訊，部分數值因資料時效性差異標註為估算值或待確認，僅供參考，不構成任何投資建議。投資人進行投資決策前應自行查證官方公佈之最新數據，並審慎評估風險。
+  </div>
+</section>
+
+<footer>
+  週市場績效分析報告 · 產生日期 2026-07-25 · AI 自動生成
+</footer>
+
+</div>
+</body>
+</html>
